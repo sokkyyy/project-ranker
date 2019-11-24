@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import RegForm
 from django.contrib.auth.models import User
+from .models import Profile
+
 # Create your views here.
 def home(request):
     return render(request,'home.html')
 
 def register(request):
-    if request.method == 'POST':
+    if request.method == 'POST':user.save()
         form = RegForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -20,8 +22,14 @@ def register(request):
             user.last_name = last_name
             user.save()
             
-            
+            profile = Profile(user=user)
+            profile.save()
+            return redirect(handle_login)
+
+         
     form = RegForm()
     return render(request,'auth/registration.html',
     {"form":form})
-de
+
+def handle_login(request):
+    return render(request,'auth/login.html')
