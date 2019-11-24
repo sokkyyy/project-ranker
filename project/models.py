@@ -16,7 +16,18 @@ class Profile(models.Model):
     def get_user_profile(cls,user):
         profile = Profile.objects.get(user=user)
         return profile
-        
+
     def __str__(self):
         return f'{self.bio}'     
 
+class Project(models.Model):
+    name = models.CharField(null=False,max_length=100)
+    description = models.TextField(null=False)
+    design = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
+    usability = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
+    content = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
+    average = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
+    project_pic = models.ImageField(upload_to='project_pics', null=False)
+    
+    def __str__(self):
+        return f'{self.name}'
