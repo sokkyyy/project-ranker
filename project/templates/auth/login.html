@@ -1,0 +1,11 @@
+{%extends 'base.html' %}
+{% load semanticui %}
+{%block content%}
+<div class="ui equal width form inverted segment">
+    <form action="{% url 'login' %}" method="POST">
+        {%csrf_token%}
+        {{form}}
+        <button type="submit" class="ui submit button">Sign In</button>
+    </form>
+</div>
+{%endblock%}
