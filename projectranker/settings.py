@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'project.apps.ProjectConfig',
     'django_semantic_ui',
+    'semanticuiforms',
 ]
 
 MIDDLEWARE = [
