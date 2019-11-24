@@ -12,7 +12,11 @@ class Profile(models.Model):
     )
     # projects
     # contacts =
-    
+    @classmethod
+    def get_user_profile(cls,user):
+        profile = Profile.objects.get(user=user)
+        return profile
+        
     def __str__(self):
         return f'{self.bio}'     
 

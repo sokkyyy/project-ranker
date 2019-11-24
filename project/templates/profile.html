@@ -1,0 +1,66 @@
+{%extends 'base.html' %}
+
+{%block content%}
+<div class="ui internally celled grid">
+        <div class="row">
+          <div class="four wide column" style="position: relative;">
+            <div style="position: absolute;bottom:0 ;">
+                <p>{{profile.user.username}}</p>
+                <p>{{profile.user.first_name}} {{profile.user.last_name}}</p>
+                <p style="">{{profile.bio}}</p>
+                <p>Projects:</p>
+                <p>Contacts:</p>
+                <div class="ui left pointing dropdown link item">
+                        <span>Manage Profile<i class="caret right icon"></i></span>
+                        
+                        <div class="menu">
+                          <div class="item">
+                              <a href="#">Add Project</a>
+                          </div>
+                          <div class="item">
+                              <a href="#">Edit Profile</a>
+                          </div>
+                        </div>
+                </div>
+            </div>
+          </div>
+          <div class="eight wide column" style="background-image: url({{profile.profile_pic.url}});  
+          background-position:center; background-repeat: no-repeat; background-size: cover;
+          height:300px">
+
+          </div>
+          <!--OVERALL RATING FOR USER-->
+          <div class="four wide column">
+                
+                <p><i class="heart icon" style="font-size: 100px;padding-top: 50px;"></i></p>
+                <div class="ui rating" data-rating="3" data-max-rating="10"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="three wide column">
+            <img>
+          </div>
+          <div class="ten wide column">
+            <p></p>
+          </div>
+          <div class="three wide column">
+          </div>
+        </div>
+      </div>
+
+<p>{{profile.bio}}</p>
+{%endblock%}
+
+
+{%block scripts%}
+{{block.super}}
+<script>
+$('.ui.dropdown')
+  .dropdown()
+;
+
+$('.ui.rating')
+  .rating()
+;
+</script>
+{%endblock%}

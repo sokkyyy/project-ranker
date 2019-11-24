@@ -50,3 +50,12 @@ def handle_login(request):
 
     form = LoginForm()
     return render(request,'auth/login.html',{"form":LoginForm})
+
+def handle_logout(request):
+    logout(request)
+    return redirect(handle_login)
+
+def user_profile(request):
+    user = request.user
+    profile = Profile.get_user_profile(user)
+    return render(request,'profile.html',{"profile":profile,})
