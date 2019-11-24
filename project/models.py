@@ -28,6 +28,7 @@ class Project(models.Model):
     content = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     average = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     project_pic = models.ImageField(upload_to='project_pics', null=False)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     
     def __str__(self):
         return f'{self.name}'
