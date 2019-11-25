@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{%load static%}
 
 {%block content%}
 <div class="ui four column grid">
@@ -35,7 +36,7 @@
             <div class="image content">
               <div class="image">
                   
-                  <form action="{%url 'project_details' project.id %}" method="POST">
+                  <form action="{%url 'ratings' project.id %}" method="POST">
                       {%csrf_token%}
                       <div>
                           <label>Design</label>
@@ -72,9 +73,35 @@
 $('.ui.rating')
   .rating('disable')
 ;
+$('.ui.dropdown')
+  .dropdown()
+;
 
 $('.ui.modal')
   .modal('attach events', '.test.button', 'show')
 ;
+</script>
+<!--
+<script type="text/javascript" src="{% static 'js/ratings.js' %}"></script>-->
+<script>
+$(document).ready(function(){
+    $('form').submit(function(event){
+        event.preventDefault()
+        
+        form = $("form")
+
+
+        $.ajax({
+            'url':'/ajax/ratings/{{project.id}}/',
+            'type':'POST',
+            'data':form.serialize(),
+            'dataType':'json',
+            'success':function(data){
+                alert(data['success'])
+                location.reload()
+            },
+        }) //End of Ajax
+    }) //End of submit event
+})//End of document ready function
 </script>
 {%endblock%}

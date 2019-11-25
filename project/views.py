@@ -3,7 +3,7 @@ from .forms import RegForm,LoginForm,ProjectForm
 from django.contrib.auth.models import User
 from .models import Profile,Project
 from django.contrib.auth import authenticate,login,logout
-
+from django.http import JsonResponse
 
 # Create your views here.
 def home(request):
@@ -84,23 +84,33 @@ def handle_project_upload(request):
 
 def project_details(request,project_id):
     project = Project.objects.get(pk=project_id)
-    if request.method == 'POST':
-        design = int(request.POST['design'])
-        usability = int(request.POST['usability'])
-        content = int(request.POST['content'])
-        average = (design + usability + content)/3
-        if project.design == 0 and project.content == 0 and project.usability == 0: 
-            project.design = design
-            project.usability = usability
-            project.content = content
-            project.average = average
-            project.save()
-        else:
-            project.design = (project.design + design)/2
-            project.content = (project.content + content)/2
-            project.usability =(project.usability + usability)/2
-            project.average = (project.average  + average)/2
 
-            project.save()
     return render(request,'project-details.html',
     {"project":project})
+
+def ratings(request,project_id):
+    project = Project.objects.get(pk=project_id)
+    print(project)
+    
+    design = int(request.POST['design'])
+    usability = int(request.POST['usability'])
+    content = int(request.POST['content'])
+    average = (design + usability + content)/3
+
+
+    if project.design == 0 and project.content == 0 and project.usability == 0: 
+        project.design = design
+        project.usability = usability
+        project.content = content
+        project.average = average
+        project.save()
+    else:
+        project.design = (project.design + design)/2
+        project.content = (project.content + content)/2
+        project.usability =(project.usability + usability)/2
+        project.average = (project.average  + average)/2
+        project.save()
+    
+    data = {'success':'Rated'}
+    
+    return JsonResponse(data)
