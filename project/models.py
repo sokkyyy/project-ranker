@@ -28,9 +28,21 @@ class Project(models.Model):
         MinValueValidator(0),
         MaxValueValidator(10)
     ])
-    usability = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
-    content = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
-    average = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
+    usability = models.IntegerField(default=0,
+    validators=[
+        MinValueValidator(0),
+        MaxValueValidator(10)
+    ])
+    content = models.IntegerField(default=0,
+    validators=[
+        MinValueValidator(0),
+        MaxValueValidator(10)
+    ])
+    average = models.IntegerField(default=0,
+    validators=[
+        MinValueValidator(0),
+        MaxValueValidator(10)
+    ])
     project_pic = models.ImageField(upload_to='project_pic/')
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     
