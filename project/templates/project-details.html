@@ -19,7 +19,7 @@
         <p><div name='design' class="ui rating disabled" data-rating="{{project.design|floatformat:'0'}}" data-max-rating="10"></div></p>
         <p><div name='design' class="ui rating disabled" data-rating="{{project.usability|floatformat:'0'}}" data-max-rating="10"></div></p>
         <p><div name='design' class="ui rating disabled" data-rating="{{project.content|floatformat:'0'}}" data-max-rating="10"></div></p>
-        <p>{{project.average|floatformat:"0"}}</p>
+        <p><div name='design' class="ui rating disabled" data-rating="{{project.average|floatformat:'0'}}" data-max-rating="10"></div></p>
     </div>
     <div class="column">
         <div>
@@ -34,11 +34,24 @@
             </div>
             <div class="image content">
               <div class="image">
-                  <div>Design</div>
+                  
                   <form action="{%url 'project_details' project.id %}" method="POST">
                       {%csrf_token%}
+                      <div>
+                          <label>Design</label>
                         <input type="range" name="design" id="design" min="1" max="10">
+                      </div>
+                      <div>
+                          <label>Usability</label>
+                        <input type="range" name="usability" id="usability" min="1" max="10">
+                      </div>
+                      <div>
+                          <label>Content</label>
+                        <input type="range" name="content" id="content" min="1" max="10">
+                      </div>
+                      <div>
                         <button type="submit">Vote</button>
+                      </div>
                   </form>
               </div>
               <div class="description">
