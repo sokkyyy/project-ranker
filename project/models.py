@@ -50,6 +50,15 @@ class Project(models.Model):
     def get_user_projects(cls,profile):
         projects = cls.objects.filter(profile=profile)
         return projects
+    
+    @classmethod
+    def get_overall_average(cls,projects):
+        overall = 0
+        for project in projects:
+            overall += project.average
+        average = overall/len(projects)
+        return average
+
 
     def __str__(self):
         return f'{self.name}'

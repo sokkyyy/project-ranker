@@ -32,9 +32,10 @@
 
           <!--OVERALL RATING FOR USER-->
           <div class="four wide column">
+                <p>Overall Rating:</p>
+                <p><i class="star icon" style="font-size: 100px; padding-top: 50px;"></i></p>
+                <p>{{overall_rating|floatformat:'0'}}</p>
                 
-                <p><i class="heart icon" style="font-size: 100px;padding-top: 50px;"></i></p>
-                <input type="number" class="ui rating" data-rating="3" data-max-rating="10"></input>
           </div>
         </div>
 
@@ -65,12 +66,15 @@
               <!---->
               <div class="ui form">
                 <div class="field">
+                  <label>Name</label>
                   <input type="text" name="name" id="">
                 </div>
                 <div class="field">
-                  <input type="text" name="description" id="">
+                  <label>Description</label>
+                  <textarea type="text" name="description" id=""></textarea>
                 </div>
                 <div class="field">
+                  <label>Cover Image</label>
                     <input type="file" name="project_pic" id="">
                 </div>
 

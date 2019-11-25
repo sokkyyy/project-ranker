@@ -60,11 +60,14 @@ def user_profile(request):
     user = request.user
     profile = Profile.get_user_profile(user)
 
+
     form = ProjectForm()
     projects = Project.get_user_projects(profile)
+    overall_rating = Project.get_overall_average(projects)
 
 
-    return render(request,'profile.html',{"profile":profile,"form":form,"projects":projects})
+    return render(request,'profile.html',{"profile":profile,"form":form,
+    "projects":projects,"overall_rating":overall_rating})
 
 def handle_project_upload(request):
     profile = Profile.get_user_profile(request.user)
