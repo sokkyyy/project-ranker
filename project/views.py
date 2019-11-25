@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import RegForm,LoginForm,ProjectForm
 from django.contrib.auth.models import User
-from .models import Profile,Project
+from .models import Profile,Project,Voted
 from django.contrib.auth import authenticate,login,logout
 from django.http import JsonResponse
 
@@ -90,6 +90,8 @@ def project_details(request,project_id):
 
 def ratings(request,project_id):
     project = Project.objects.get(pk=project_id)
+    voted = Voted(user=request.user,project=project)
+    voted.save()
     print(project)
     
     design = int(request.POST['design'])

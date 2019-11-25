@@ -53,3 +53,10 @@ class Project(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+class Voted(models.Model):
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    
+    def __unicode__(self):
+        return self.user
