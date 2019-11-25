@@ -16,10 +16,10 @@
 
         <p>{{project.name}}</p>
         <p>{{project.description}}</p>
-        <p>{{project.design}}</p>
-        <p>{{project.usability}}</p>
-        <p>{{project.content}}</p>
-        <p>{{project.average}}</p>
+        <p><div name='design' class="ui rating disabled" data-rating="{{project.design|floatformat:'0'}}" data-max-rating="10"></div></p>
+        <p><div name='design' class="ui rating disabled" data-rating="{{project.usability|floatformat:'0'}}" data-max-rating="10"></div></p>
+        <p><div name='design' class="ui rating disabled" data-rating="{{project.content|floatformat:'0'}}" data-max-rating="10"></div></p>
+        <p>{{project.average|floatformat:"0"}}</p>
     </div>
     <div class="column">
         <div>
@@ -35,7 +35,11 @@
             <div class="image content">
               <div class="image">
                   <div>Design</div>
-                <div class="ui star rating" data-rating="3" data-max-rating="10"></div>
+                  <form action="{%url 'project_details' project.id %}" method="POST">
+                      {%csrf_token%}
+                        <input type="range" name="design" id="design" min="1" max="10">
+                        <button type="submit">Vote</button>
+                  </form>
               </div>
               <div class="description">
                 A description can appear on the right
@@ -53,7 +57,7 @@
 {{block.super}}
 <script>
 $('.ui.rating')
-  .rating()
+  .rating('disable')
 ;
 
 $('.ui.modal')

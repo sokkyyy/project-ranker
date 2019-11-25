@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics/', default='avatar.png')
@@ -23,7 +24,10 @@ class Profile(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    design = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
+    design = models.IntegerField(default=0,validators=[
+        MinValueValidator(0),
+        MaxValueValidator(10)
+    ])
     usability = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     content = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     average = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
@@ -34,6 +38,6 @@ class Project(models.Model):
     def get_user_projects(cls,profile):
         projects = cls.objects.filter(profile=profile)
         return projects
-        
+
     def __str__(self):
         return f'{self.name}'

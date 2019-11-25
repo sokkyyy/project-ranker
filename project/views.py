@@ -84,5 +84,7 @@ def handle_project_upload(request):
 
 def project_details(request,project_id):
     project = Project.objects.get(pk=project_id)
+    if request.method == 'POST':
+        print(request.POST['design'])
     return render(request,'project-details.html',
     {"project":project})
