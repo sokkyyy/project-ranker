@@ -1,6 +1,9 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Project
+
+
 class RegForm(ModelForm):
     class Meta:
         model = User 
@@ -12,3 +15,8 @@ class RegForm(ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
+
+class ProjectForm(ModelForm):
+    class Meta:
+        model = Project
+        fields = ['name','description','project_pic']

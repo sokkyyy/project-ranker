@@ -21,13 +21,13 @@ class Profile(models.Model):
         return f'{self.bio}'     
 
 class Project(models.Model):
-    name = models.CharField(null=False,max_length=100)
-    description = models.TextField(null=False)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
     design = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     usability = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     content = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
     average = models.DecimalField(default=0.00,decimal_places=2,max_digits=20)
-    project_pic = models.ImageField(upload_to='project_pics', null=False)
+    project_pic = models.ImageField(upload_to='project_pic/')
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     
     def __str__(self):

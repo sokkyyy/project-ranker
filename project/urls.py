@@ -10,6 +10,7 @@ urlpatterns = [
     re_path(r'^login/$',views.handle_login,name='login'),
     path('logout/',views.handle_logout,name='logout'),
     path('profile',views.user_profile,name='profile'),
+    path('profile/project/upload/',views.handle_project_upload,name='project_upload')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

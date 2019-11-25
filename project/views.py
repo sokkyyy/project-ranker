@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from .forms import RegForm,LoginForm
+from .forms import RegForm,LoginForm,ProjectForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,Project
 from django.contrib.auth import authenticate,login,logout
 
 
@@ -58,4 +58,25 @@ def handle_logout(request):
 def user_profile(request):
     user = request.user
     profile = Profile.get_user_profile(user)
-    return render(request,'profile.html',{"profile":profile,})
+
+    form = ProjectForm()
+    
+
+
+    return render(request,'profile.html',{"profile":profile,"form":form})
+
+def handle_project_upload(request):
+    profile = Profile.get_user_profile(request.user)
+    print(profile)
+
+
+
+    if request.method == "POST":
+        name = request.POST['name']
+        description = request.POST['description']
+        pic = request.FILES['project_pic']
+        project = Project(name=name,description=description,project_pic=pic,profile=profile)
+        project.save()
+        
+
+    return redirect(user_profile)
