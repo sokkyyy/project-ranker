@@ -57,6 +57,13 @@ class Project(models.Model):
 class Voted(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    @classmethod
+    def has_user_voted(cls,project,user):
+        if cls.objects.filter(project=project,user=user):
+            return True
+        else:
+            return False
     
     def __unicode__(self):
         return self.user

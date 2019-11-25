@@ -84,9 +84,10 @@ def handle_project_upload(request):
 
 def project_details(request,project_id):
     project = Project.objects.get(pk=project_id)
+    has_user_voted = Voted.has_user_voted(project,request.user)
 
     return render(request,'project-details.html',
-    {"project":project})
+    {"project":project,"has_user_voted":has_user_voted})
 
 def ratings(request,project_id):
     project = Project.objects.get(pk=project_id)

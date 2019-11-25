@@ -23,9 +23,15 @@
         <p><div name='design' class="ui rating disabled" data-rating="{{project.average|floatformat:'0'}}" data-max-rating="10"></div></p>
     </div>
     <div class="column">
+        {%if not has_user_voted%}
         <div>
             <button class="test button">Vote</button>
         </div>
+        {%else%}
+        <div>
+            <p>You have Voted on this project.</p>
+        </div>
+        {%endif%}
     </div>
 
     <div class="ui modal">
