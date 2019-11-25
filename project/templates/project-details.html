@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="ui four column grid">
+    <div class="two column row">
+      <div class="column">rr</div>
+      <div class="column">rr</div>
+    </div>
+    <div class="column"></div>
+    <div class="column" style="background-image: url({{project.project_pic.url}});  
+    background-position:center; background-repeat: no-repeat; background-size: cover;
+    height:200px">
+
+    </div>
+    <div class="column">
+
+        <p>{{project.name}}</p>
+        <p>{{project.description}}</p>
+        <p>{{project.design}}</p>
+        <p>{{project.usability}}</p>
+        <p>{{project.content}}</p>
+        <p>{{project.average}}</p>
+    </div>
+    <div class="column">
+        <div>
+            <button class="test button">Vote</button>
+        </div>
+    </div>
+
+    <div class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">
+              Modal Title
+            </div>
+            <div class="image content">
+              <div class="image">
+                  <div>Design</div>
+                <div class="ui star rating" data-rating="3" data-max-rating="10"></div>
+              </div>
+              <div class="description">
+                A description can appear on the right
+              </div>
+            </div>
+            <div class="actions">
+              <div class="ui button">Cancel</div>
+              <div class="ui button">OK</div>
+            </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block scripts%}
+{{block.super}}
+<script>
+$('.ui.rating')
+  .rating()
+;
+
+$('.ui.modal')
+  .modal('attach events', '.test.button', 'show')
+;
+</script>
+{%endblock%}

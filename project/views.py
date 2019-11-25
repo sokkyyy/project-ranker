@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    projects = Project.objects.all()
+    return render(request,'home.html',{"projects":projects})
 
 def register(request):
     if request.method == 'POST':
@@ -60,10 +61,10 @@ def user_profile(request):
     profile = Profile.get_user_profile(user)
 
     form = ProjectForm()
-    
+    projects = Project.get_user_projects(profile)
 
 
-    return render(request,'profile.html',{"profile":profile,"form":form})
+    return render(request,'profile.html',{"profile":profile,"form":form,"projects":projects})
 
 def handle_project_upload(request):
     profile = Profile.get_user_profile(request.user)
@@ -80,3 +81,8 @@ def handle_project_upload(request):
         
 
     return redirect(user_profile)
+
+def project_details(request,project_id):
+    project = Project.objects.get(pk=project_id)
+    return render(request,'project-details.html',
+    {"project":project})

@@ -34,18 +34,28 @@
           <div class="four wide column">
                 
                 <p><i class="heart icon" style="font-size: 100px;padding-top: 50px;"></i></p>
-                <div class="ui rating" data-rating="3" data-max-rating="10"></div>
+                <form action="{%url 'handle_votes' %}" method="POST">
+                  <input type="number" class="ui rating" data-rating="3" data-max-rating="10"></input>
+                  <button></button>
+                </form>
           </div>
         </div>
+
+
         <div class="row">
+
+          {%for project in projects%}
+          <div class="three wide column" style="background-image: url({{project.project_pic.url}});  
+          background-position:center; background-repeat: no-repeat; background-size: cover;
+          height:200px">
           <div class="three wide column">
+              <a class="ui button" href="{%url 'project_details' project.id%}">Details</a>
+
+          </div>
             
           </div>
-          <div class="ten wide column">
-            <p></p>
-          </div>
-          <div class="three wide column">
-          </div>
+          {%endfor%}
+          
         </div>
 
 

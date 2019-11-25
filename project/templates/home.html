@@ -1,7 +1,19 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<p>Ry</p>
+<div class="row">
+    {%for project in projects%}
+    <div class="three wide column" style="background-image: url({{project.project_pic.url}});  
+    background-position:center; background-repeat: no-repeat; background-size: cover;
+    height:200px">
+    <div class="three wide column">
+        {{project.name}}
+
+    </div>
+      
+    </div>
+    {%endfor%}
+</div>
 {%endblock%}
 
 {%block scripts%}
