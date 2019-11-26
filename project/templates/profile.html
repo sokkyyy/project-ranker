@@ -70,11 +70,19 @@
                 
             </div>
           </div>
+          {%if user == profile.user %}
           <div class="eight wide column OpenEditPic" style="background-image: url({{profile.profile_pic.url}});  
+          background-position:center; background-repeat: no-repeat; background-size: cover;
+          height:400px;cursor: pointer;" data-content="Change Profile Picture.">
+
+          </div>
+          {%else%}
+          <div class="eight wide column" style="background-image: url({{profile.profile_pic.url}});  
           background-position:center; background-repeat: no-repeat; background-size: cover;
           height:400px;cursor: pointer;">
 
-          </div>
+          </div>          
+          {%endif%}
 
           <!--OVERALL RATING FOR USER-->
           <div class="four wide column">
@@ -96,9 +104,10 @@
           
             {%for project in projects%}
 
-            <div class="four wide column" style="background-image: url({{project.project_pic.url}});  
+            <div class="four wide column viewDetails" style="background-image: url({{project.project_pic.url}});  
             background-position:center; background-repeat: no-repeat; background-size: cover;
-            height:200px;margin: 10px; cursor: pointer;" onclick="location.href='project/{{project.id}}/'">
+            height:200px;margin: 10px; cursor: pointer;" onclick="location.href='/project/{{project.id}}/'"
+            data-content="View Project Details.">
             <div class="three wide column">
                 <!-- <a class="ui button" href="{%url 'project_details' project.id%}">Details</a> -->
 
@@ -199,6 +208,14 @@ $('.ui.modal.edit')
 
 $('.ui.modal.pic')
   .modal('attach events', '.OpenEditPic', 'show')
+;
+
+$('.OpenEditPic')
+  .popup()
+;
+
+$('.viewDetails')
+  .popup()
 ;
 </script>
 {%endblock%}
