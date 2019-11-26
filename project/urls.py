@@ -9,10 +9,11 @@ urlpatterns = [
     re_path(r'^register/$',views.register, name='register'),
     re_path(r'^login/$',views.handle_login,name='login'),
     path('logout/',views.handle_logout,name='logout'),
-    path('profile',views.user_profile,name='profile'),
+    path('profile/',views.user_profile,name='profile'),
     path('profile/project/upload/',views.handle_project_upload,name='project_upload'),
     path('project/<int:project_id>/',views.project_details,name="project_details"),
-    re_path(r'^ajax/ratings/(\d+)/$',views.ratings,name='ratings')
+    re_path(r'^ajax/ratings/(\d+)/$',views.ratings,name='ratings'),
+    path('profile/update/pic/', views.handle_profile_pic, name='upload_pic'), 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

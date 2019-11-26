@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 class Profile(models.Model):
-    profile_pic = models.ImageField(upload_to='profile_pics/', default='avatar.png')
+    profile_pic = models.ImageField(upload_to='profile_pics/')
     bio = models.TextField(default='Add a bio')
     user = models.OneToOneField(
         User,

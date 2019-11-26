@@ -70,9 +70,9 @@
                 
             </div>
           </div>
-          <div class="eight wide column" style="background-image: url({{profile.profile_pic.url}});  
+          <div class="eight wide column OpenEditPic" style="background-image: url({{profile.profile_pic.url}});  
           background-position:center; background-repeat: no-repeat; background-size: cover;
-          height:400px">
+          height:400px;cursor: pointer;">
 
           </div>
 
@@ -139,7 +139,7 @@
           </div>
         </div>
 
-        <!--Modal for Editing User Information  -->
+        <!--Modal for Editing User Bio  -->
         <div class="ui modal edit">
             <div class="header">Edit Profile</div>
             <div class="content">
@@ -149,6 +149,22 @@
                 <div class="ui form">
                   <div class="field">
                       {% render_field editForm.bio %}                    
+                  </div>
+                </div>
+                <button type="submit" class="ui submit button">Edit</button>
+              </form>
+                
+            </div>
+        </div>
+        <!--Modal for Editing User Profile Pic  -->
+        <div class="ui modal pic">
+            <div class="header">Edit Profile</div>
+            <div class="content">
+              <form action="{%url 'upload_pic' %}" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="ui form">
+                  <div class="field">
+                      <input type="file" name="profile_pic" id="">                    
                   </div>
                 </div>
                 <button type="submit" class="ui submit button">Edit</button>
@@ -179,6 +195,10 @@ $('.ui.modal')
 
 $('.ui.modal.edit')
   .modal('attach events', '.edit.button', 'show')
+; 
+
+$('.ui.modal.pic')
+  .modal('attach events', '.OpenEditPic', 'show')
 ;
 </script>
 {%endblock%}
