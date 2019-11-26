@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import RegForm,LoginForm,ProjectForm
+from .forms import RegForm,LoginForm,ProjectForm,EditProfile
 from django.contrib.auth.models import User
 from .models import Profile,Project,Voted
 from django.contrib.auth import authenticate,login,logout
@@ -59,6 +59,15 @@ def handle_logout(request):
 def user_profile(request):
     user = request.user
     profile = Profile.get_user_profile(user)
+    
+    if 'bio' in request.POST:
+        editForm = EditProfile(request.POST)
+        if editForm.is_valid():
+            profile.bio = editForm.cleaned_data['bio']
+            profile.save()
+            return redirect(user_profile)
+
+    editForm = EditProfile()
 
 
     form = ProjectForm()
@@ -67,7 +76,8 @@ def user_profile(request):
 
 
     return render(request,'profile.html',{"profile":profile,"form":form,
-    "projects":projects,"overall_rating":overall_rating})
+    "projects":projects,"overall_rating":overall_rating,
+    "editForm":editForm,})
 
 def handle_project_upload(request):
     profile = Profile.get_user_profile(request.user)

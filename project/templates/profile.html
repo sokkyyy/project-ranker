@@ -57,7 +57,7 @@
                             <a href="#" class="test button">Add Project</a>
                         </div>
                         <div class="item">
-                            <a href="#">Edit Profile</a>
+                            <a href="#" class="edit button">Edit Profile</a>
                         </div>
                       </div>
                     </div>
@@ -138,6 +138,24 @@
               
           </div>
         </div>
+
+        <!--Modal for Editing User Information  -->
+        <div class="ui modal edit">
+            <div class="header">Edit Profile</div>
+            <div class="content">
+              <form action="{%url 'profile' %}" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <!---->
+                <div class="ui form">
+                  <div class="field">
+                      {% render_field editForm.bio %}                    
+                  </div>
+                </div>
+                <button type="submit" class="ui submit button">Edit</button>
+              </form>
+                
+            </div>
+        </div>
 </div>
 
 
@@ -157,6 +175,10 @@ $('.ui.rating')
 
 $('.ui.modal')
   .modal('attach events', '.test.button', 'show')
+;
+
+$('.ui.modal.edit')
+  .modal('attach events', '.edit.button', 'show')
 ;
 </script>
 {%endblock%}
