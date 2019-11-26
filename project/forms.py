@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Project
+from .models import Project,Profile
 
 
 class RegForm(ModelForm):
@@ -20,3 +20,8 @@ class ProjectForm(ModelForm):
     class Meta:
         model = Project
         fields = ['name','description','project_pic']
+
+class EditProfile(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_pic','bio']

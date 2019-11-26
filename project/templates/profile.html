@@ -64,7 +64,7 @@
                   </div>
                 </div>                                                 
               </div>
-              size
+              
                 
                 
                 
@@ -72,33 +72,41 @@
           </div>
           <div class="eight wide column" style="background-image: url({{profile.profile_pic.url}});  
           background-position:center; background-repeat: no-repeat; background-size: cover;
-          height:300px">
+          height:400px">
 
           </div>
 
           <!--OVERALL RATING FOR USER-->
           <div class="four wide column">
-                <p>Overall Rating:</p>
-                <p><i class="star icon" style="font-size: 100px; padding-top: 50px;"></i></p>
-                <p>{{overall_rating|floatformat:'0'}}</p>
-                
+            <div class="ui divided items">
+              <div class="item">
+                <div class="content">
+                  <div class="header"style="margin-left:70px;margin-top:50px;">Overall Rating</div>
+                  <p><i class="star icon" style="font-size: 100px; padding-top: 100px;
+                  margin-left: 70px; color:gold"></i></p>
+                  <p style="margin-left: 120px;font-size: 30px; font-weight: bold;">{{overall_rating|floatformat:'0'}}</p>
+                </div>
+              </div>
+            </div>                
           </div>
         </div>
 
 
-        <div class="row" style="margin-top:150px;">
+        <div class="row" style="margin-top:100px; padding-left: 140px;">
+          
+            {%for project in projects%}
 
-          {%for project in projects%}
-          <div class="three wide column" style="background-image: url({{project.project_pic.url}});  
-          background-position:center; background-repeat: no-repeat; background-size: cover;
-          height:200px">
-          <div class="three wide column">
-              <a class="ui button" href="{%url 'project_details' project.id%}">Details</a>
+            <div class="four wide column" style="background-image: url({{project.project_pic.url}});  
+            background-position:center; background-repeat: no-repeat; background-size: cover;
+            height:200px;margin: 10px; cursor: pointer;" onclick="location.href='project/{{project.id}}/'">
+            <div class="three wide column">
+                <!-- <a class="ui button" href="{%url 'project_details' project.id%}">Details</a> -->
 
-          </div>
-            
-          </div>
-          {%endfor%}
+            </div>
+
+            </div>
+
+            {%endfor%}
           
         </div>
 
