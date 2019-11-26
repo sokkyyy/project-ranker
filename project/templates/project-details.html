@@ -4,35 +4,45 @@
 {%block content%}
 <div class="ui four column grid">
     <div class="two column row">
-      <div class="column">rr</div>
-      <div class="column">rr</div>
+      <div class="column"></div>
+      <div class="column"></div>
     </div>
-    <div class="column"></div>
-    <div class="column" style="background-image: url({{project.project_pic.url}});  
+    <div class="two wide column"></div>
+    <div class="eight wide column" style="background-image: url({{project.project_pic.url}});  
     background-position:center; background-repeat: no-repeat; background-size: cover;
-    height:200px">
+    height:400px">
 
     </div>
-    <div class="column">
+    <div class="four wide column">
 
-        <p>{{project.name}}</p>
-        <p>{{project.description}}</p>
-        <p><div name='design' class="ui rating disabled" data-rating="{{project.design|floatformat:'0'}}" data-max-rating="10"></div></p>
-        <p><div name='design' class="ui rating disabled" data-rating="{{project.usability|floatformat:'0'}}" data-max-rating="10"></div></p>
-        <p><div name='design' class="ui rating disabled" data-rating="{{project.content|floatformat:'0'}}" data-max-rating="10"></div></p>
-        <p><div name='design' class="ui rating disabled" data-rating="{{project.average|floatformat:'0'}}" data-max-rating="10"></div></p>
-    </div>
-    <div class="column">
+        
+        <div class="ui items">
+            <div class="item">
+              <div class="content">
+                <a class="header">Ratings</a>
+                <div class="meta">
+                     <p><span>Design: </span><div name='design' class="ui rating disabled" data-rating="{{project.design|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;"></div></p>
+                    <p><span>Usability: </span><div name='usability' class="ui rating disabled" data-rating="{{project.usability|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;"></div></p>
+                    <p><span>Content: </span><div name='content' class="ui rating disabled" data-rating="{{project.content|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;" ></div></p>
+                    <p style="padding-top: 20px;"><span style="font-weight: bold; ">Average: </span><div name='average' class="ui rating disabled" data-rating="{{project.average|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;" ></div></p>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+
         {%if not has_user_voted%}
         <div>
-            <button class="test button">Vote</button>
+            <button class="test button ui secondary button">Rate this Project</button>
         </div>
         {%else%}
         <div>
             <p>You have Voted on this project.</p>
         </div>
         {%endif%}
+
     </div>
+
 
     <div class="ui modal">
             <i class="close icon"></i>
@@ -70,6 +80,34 @@
               <div class="ui button">OK</div>
             </div>
     </div>
+</div>
+<div class="ui grid">
+    <div class="two wide column"></div>
+    <div class="eight wide column">
+        <div class="ui items">
+            <div class="item">
+              <div class="content">
+                <a class="header" style="font-size: 22px;">Name</a>
+                <div class="meta" style="font-size: 19px;">
+                  <span>{{project.name}}</span>
+                </div>
+                <div class="extra" style="font-size: 17px;">
+                  by: {{project.profile.user.username}}
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="content">
+                <a class="header" style="font-size: 22px;">Description</a>
+                <div class="meta" style="font-size: 19px;">
+                  <span>{{project.description}}</span>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="two wide column"></div>
 </div>
 {%endblock%}
 
