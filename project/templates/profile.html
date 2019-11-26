@@ -4,24 +4,70 @@
 <div class="ui internally celled grid">
         <div class="row">
           <div class="four wide column" style="position: relative;">
-            <div style="position: absolute;bottom:0 ;">
-                <p>{{profile.user.username}}</p>
-                <p>{{profile.user.first_name}} {{profile.user.last_name}}</p>
-                <p style="">{{profile.bio}}</p>
-                <p>Projects:</p>
-                <p>Contacts:</p>
-                <div class="ui left pointing dropdown link item">
-                        <span>Manage Profile<i class="caret right icon"></i></span>
-                        
-                        <div class="menu">
-                          <div class="item">
-                              <a href="#" class="test button">Add Project</a>
-                          </div>
-                          <div class="item">
-                              <a href="#">Edit Profile</a>
-                          </div>
-                        </div>
+            <div style="position: absolute;">
+              <div class="ui divided items">
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Username</div> 
+                    <div class="meta">
+                      <span>{{profile.user.username}}</span>
+                    </div>
+                  </div>
                 </div>
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Full Name</div>
+                    <div class="meta">
+                      <span>{{profile.user.first_name}} {{profile.user.last_name}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Bio</div>
+                    <div class="meta">
+                      <span>{{profile.bio}}</span>
+                    </div>
+                  </div>
+                </div>                
+                <div class="item">
+                  <div class="middle aligned content">
+                    <div class="header"> Projects</div>
+                    <div class="meta">
+                      <span>{{projects|length}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="middle aligned content">
+                    <div class="header">Contacts</div>
+                    <div class="meta">
+                        <span>Add contacts</span>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="middle aligned content">
+                    <div class="ui left pointing dropdown link item">
+                      <div class="header" style="font-weight:bold;font-size: 18px;">Manage Profile<i class="caret right icon"></i></div>
+                      
+                      <div class="menu" style="background-color: black;">
+                        <div class="item">
+                            <a href="#" class="test button">Add Project</a>
+                        </div>
+                        <div class="item">
+                            <a href="#">Edit Profile</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                                                 
+              </div>
+              size
+                
+                
+                
             </div>
           </div>
           <div class="eight wide column" style="background-image: url({{profile.profile_pic.url}});  
@@ -40,7 +86,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="row" style="margin-top:150px;">
 
           {%for project in projects%}
           <div class="three wide column" style="background-image: url({{project.project_pic.url}});  
