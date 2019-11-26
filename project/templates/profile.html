@@ -47,6 +47,7 @@
                     
                   </div>
                 </div>
+                {%if user == profile.user %}
                 <div class="item">
                   <div class="middle aligned content">
                     <div class="ui left pointing dropdown link item">
@@ -62,8 +63,10 @@
                       </div>
                     </div>
                   </div>
-                </div>                                                 
+                </div>
+                {%endif%}                                                 
               </div>
+              
               
                 
                 
@@ -107,7 +110,7 @@
             <div class="four wide column viewDetails" style="background-image: url({{project.project_pic.url}});  
             background-position:center; background-repeat: no-repeat; background-size: cover;
             height:200px;margin: 10px; cursor: pointer;" onclick="location.href='/project/{{project.id}}/'"
-            data-content="View Project Details.">
+            data-content="Click to view Ratings.">
             <div class="three wide column">
                 <!-- <a class="ui button" href="{%url 'project_details' project.id%}">Details</a> -->
 
@@ -152,7 +155,7 @@
         <div class="ui modal edit">
             <div class="header">Edit Profile</div>
             <div class="content">
-              <form action="{%url 'profile' %}" method="POST" enctype="multipart/form-data">
+              <form action="{%url 'profile' profile.user.username %}" method="POST" enctype="multipart/form-data">
                 {%csrf_token%}
                 <!---->
                 <div class="ui form">

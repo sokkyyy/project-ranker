@@ -56,8 +56,8 @@ def handle_logout(request):
     logout(request)
     return redirect(handle_login)
 
-def user_profile(request):
-    user = request.user
+def user_profile(request,username):
+    user = User.objects.get(username=username)
     profile = Profile.get_user_profile(user)
     
     if 'bio' in request.POST:
@@ -85,11 +85,11 @@ def handle_profile_pic(request):
         pic = request.FILES['profile_pic']
         profile.profile_pic = pic
         profile.save()
-    return redirect(user_profile)
+    return redirect(user_profile,request.user.username)
 
 def handle_project_upload(request):
     profile = Profile.get_user_profile(request.user)
-    print(profile)
+
 
 
 
@@ -101,7 +101,7 @@ def handle_project_upload(request):
         project.save()
         
 
-    return redirect(user_profile)
+    return redirect(user_profile,request.user.username)
 
 def project_details(request,project_id):
     project = Project.objects.get(pk=project_id)
