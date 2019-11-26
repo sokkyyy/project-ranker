@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import RegForm,LoginForm,ProjectForm,EditProfile,UpdateProfilePic
+from .forms import RegForm,LoginForm,ProjectForm,EditProfile
 from django.contrib.auth.models import User
 from .models import Profile,Project,Voted
 from django.contrib.auth import authenticate,login,logout
@@ -68,7 +68,6 @@ def user_profile(request):
             return redirect(user_profile)
 
     editForm = EditProfile()
-    editProfilePic = UpdateProfilePic()
 
 
     form = ProjectForm()
@@ -78,7 +77,7 @@ def user_profile(request):
 
     return render(request,'profile.html',{"profile":profile,"form":form,
     "projects":projects,"overall_rating":overall_rating,
-    "editForm":editForm,"editProfilePic":editProfilePic})
+    "editForm":editForm,})
 
 def handle_profile_pic(request):
     profile = Profile.get_user_profile(request.user)
