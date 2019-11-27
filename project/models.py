@@ -56,7 +56,7 @@ class Project(models.Model):
         MaxValueValidator(10)
     ])
     project_pic = models.ImageField(upload_to='project_pic/')
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='projects')
     
     @classmethod
     def get_user_projects(cls,profile):
