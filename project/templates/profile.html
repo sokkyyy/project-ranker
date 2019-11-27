@@ -1,7 +1,7 @@
 {%extends 'base.html' %}
 {%load semanticui %}
 {%block content%}
-<div class="ui internally celled grid">
+<div class="ui internally celled grid" style="margin-top: 60px;">
         <div class="row">
           <div class="four wide column" style="position: relative;">
             <div style="position: absolute;">
@@ -82,7 +82,7 @@
           {%else%}
           <div class="eight wide column" style="background-image: url({{profile.profile_pic.url}});  
           background-position:center; background-repeat: no-repeat; background-size: cover;
-          height:400px;cursor: pointer;">
+          height:400px;">
 
           </div>          
           {%endif%}
@@ -124,7 +124,7 @@
 
 
         <!--Modal for Uploading user projects  -->
-        <div class="ui modal">
+        <div class="ui modal project">
           <div class="header">Add a Project</div>
           <div class="content">
             <form action="{%url 'project_upload' %}" method="POST" enctype="multipart/form-data">
@@ -170,7 +170,7 @@
         </div>
         <!--Modal for Editing User Profile Pic  -->
         <div class="ui modal pic">
-            <div class="header">Edit Profile</div>
+            <div class="header">Change Profile Picture</div>
             <div class="content">
               <form action="{%url 'upload_pic' %}" method="POST" enctype="multipart/form-data">
                 {%csrf_token%}
@@ -201,7 +201,7 @@ $('.ui.rating')
   .rating()
 ;
 
-$('.ui.modal')
+$('.ui.modal.project')
   .modal('attach events', '.test.button', 'show')
 ;
 

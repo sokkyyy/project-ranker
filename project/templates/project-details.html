@@ -2,7 +2,7 @@
 {%load static%}
 
 {%block content%}
-<div class="ui four column grid">
+<div class="ui four column grid" style="margin-top: 60px;">
     <div class="two column row">
       <div class="column"></div>
       <div class="column"></div>
@@ -24,80 +24,80 @@
                      <p><span>Design: </span><div name='design' class="ui rating disabled" data-rating="{{project.design|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;"></div></p>
                     <p><span>Usability: </span><div name='usability' class="ui rating disabled" data-rating="{{project.usability|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;"></div></p>
                     <p><span>Content: </span><div name='content' class="ui rating disabled" data-rating="{{project.content|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;" ></div></p>
-                    <p style="padding-top: 20px;"><span style="font-weight: bold; ">Average: </span><div name='average' class="ui rating disabled" data-rating="{{project.average|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;" ></div></p>
+                    <p style="padding-top: 20px;"><span style="font-weight: bold; ">Average: </span><div name='average' class="ui star rating" data-rating="{{project.average|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;" ></div></p>
                 </div>
               </div>
             </div>
         </div>
         
-
-        {%if not has_user_voted%}
-        <div>
-            <button class="test button ui secondary button">Rate this Project</button>
+        <div style="margin-top: 50px; margin-left: 50px;">
+          {%if not has_user_voted%}
+          <div>
+              <button class="test button ui secondary button">Rate this Project</button>
+          </div>
+          {%else%}
+          <div>
+              <p>You have Voted on this project.</p>
+          </div>
+          {%endif%}
         </div>
-        {%else%}
-        <div>
-            <p>You have Voted on this project.</p>
-        </div>
-        {%endif%}
 
     </div>
 
 
-    <div class="ui modal">
+    <div class="ui small modal">
             <i class="close icon"></i>
             <div class="header">
-              Modal Title
+              Rate Project: {{project.name}}
+              
             </div>
-            <div class="image content">
-              <div class="image">
+            <div class="content">
+              <div style="margin-left: 100px;">
                   
-                  <form action="{%url 'ratings' project.id %}" method="POST">
+                  <form action="{%url 'ratings' project.id %}" method="POST" class="ui form">
                       {%csrf_token%}
-                      <div>
+                      <div class="field">
                           <label>Design</label>
-                        <input type="range" name="design" id="design" min="1" max="10">
+                          <small>(overall appearance of the project)</small>
+                        <input type="range" name="design" id="design" min="1" max="10" style="margin-left:230px;">
                       </div>
-                      <div>
+                      <div class="field">
                           <label>Usability</label>
-                        <input type="range" name="usability" id="usability" min="1" max="10">
+                          <small>(user experience and how responsive the project is)</small>
+                        <input type="range" name="usability" id="usability" min="1" max="10" style="margin-left:150px;">
                       </div>
-                      <div>
+                      <div class="field">
                           <label>Content</label>
+                          <small>(technologies used, the font used, is it uniform throughout the project and grammar)</small>
                         <input type="range" name="content" id="content" min="1" max="10">
-                      </div>
-                      <div>
-                        <button type="submit">Vote</button>
                       </div>
                   </form>
               </div>
-              <div class="description">
-                A description can appear on the right
-              </div>
             </div>
-            <div class="actions">
-              <div class="ui button">Cancel</div>
-              <div class="ui button">OK</div>
+            <span style="float: right;">Once you have posted, you will not be allowed to change your ratings.</span>
+            <div class="ui actions" style="margin-left: 150px;margin-top: 10px;">
+              
+              <button class="ui secondary button" type="submit">Post Ratings</button>
             </div>
     </div>
 </div>
 <div class="ui grid">
     <div class="two wide column"></div>
     <div class="eight wide column">
-        <div class="ui items">
-            <div class="item">
+        <div class="ui items" >
+            <div class="item" style="padding-bottom: 10px;">
               <div class="content">
                 <a class="header" style="font-size: 22px;">Name</a>
                 <div class="meta" style="font-size: 19px;">
                   <span>{{project.name}}</span>
                 </div>
                 <div class="extra" style="font-size: 17px;">
-                  by: {{project.profile.user.username}}
+                  by: <a href="{% url 'profile' project.profile.user.username %}">{{project.profile.user.username}}</a>
                 </div>
               </div>
             </div>
 
-            <div class="item">
+            <div class="item" style="padding-bottom: 10px;">
               <div class="content">
                 <a class="header" style="font-size: 22px;">Description</a>
                 <div class="meta" style="font-size: 19px;">
@@ -105,6 +105,14 @@
                 </div>
               </div>
             </div>
+            <div class="item" style="padding-bottom: 10px;">
+                <div class="content">
+                  <a class="header" style="font-size: 22px;">Live Link</a>
+                  <div class="meta" style="font-size: 19px;">
+                    <span>{{project.link}}</span>
+                  </div>
+                </div>
+            </div>            
         </div>
     </div>
     <div class="two wide column"></div>
@@ -117,11 +125,12 @@
 $('.ui.rating')
   .rating('disable')
 ;
+
 $('.ui.dropdown')
   .dropdown()
 ;
 
-$('.ui.modal')
+$('.ui.small.modal')
   .modal('attach events', '.test.button', 'show')
 ;
 </script>

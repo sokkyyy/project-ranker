@@ -13,7 +13,8 @@ urlpatterns = [
     path('profile/project/upload/',views.handle_project_upload,name='project_upload'),
     path('project/<int:project_id>/',views.project_details,name="project_details"),
     re_path(r'^ajax/ratings/(\d+)/$',views.ratings,name='ratings'),
-    path('profile/update/pic/', views.handle_profile_pic, name='upload_pic'), 
+    path('profile/update/pic/', views.handle_profile_pic, name='upload_pic'),
+    path('search/', views.search_projects,name='search_term') 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
