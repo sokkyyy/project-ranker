@@ -56,8 +56,16 @@ class Project(models.Model):
         overall = 0
         for project in projects:
             overall += project.average
-        average = overall/len(projects)
+        try:
+            average = overall/len(projects)
+        except ZeroDivisionError:
+            return 0
         return average
+    
+    @classmethod
+    def search_projects(cls,search_term):
+        projects = cls.objects.filter(name__icontains = search_term)
+        return projects
 
 
     def __str__(self):

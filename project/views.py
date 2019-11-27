@@ -25,7 +25,7 @@ def register(request):
             user.last_name = last_name
             user.save()
             
-            profile = Profile(user=user)
+            profile = Profile(user=user,profile_pic='profile_pics/avatar.png')
             profile.save()
             return redirect(handle_login)
 
@@ -138,3 +138,9 @@ def ratings(request,project_id):
     data = {'success':'Rated'}
     
     return JsonResponse(data)
+
+
+def search_projects(request):
+    search_term = request.GET['search']
+    projects = Project.search_projects(search_term)
+    return render(request, 'search.html',{"projects":projects})
