@@ -1,6 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+
+
+
+#API MODELS
+
+
+
+
+
+
 # Create your models here.
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics/')
@@ -9,7 +19,8 @@ class Profile(models.Model):
         User,
         on_delete=models.CASCADE,
         primary_key=True,
-        default=1
+        default=1,
+        related_name='profiles'
     )
     # projects
     # contacts =

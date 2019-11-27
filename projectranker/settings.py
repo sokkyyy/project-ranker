@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'project.apps.ProjectConfig',
     'django_semantic_ui',
     'semanticuiforms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
