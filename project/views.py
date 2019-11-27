@@ -157,6 +157,7 @@ from .serializer import ProfileSerializer,ProjectSerializer
 class ProfileList(APIView):
     def get(self,request,format=None):
         all_profiles = Profile.objects.all()
+        
         serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
 
