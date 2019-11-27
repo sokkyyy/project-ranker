@@ -133,23 +133,23 @@
               <div class="ui form">
                 <div class="field">
                   <label>Name</label>
-                  <input type="text" name="name" id="">
+                  <input type="text" name="name" id="" required>
                 </div>
                 <div class="field">
                   <label>Description</label>
-                  <textarea type="text" name="description" id=""></textarea>
+                  <textarea type="text" name="description" id="" required></textarea>
                 </div>
                 <div class="field">
                     <label>Live Link</label>
-                      <input type="text" name="link" id="">
+                      <input type="text" name="link" id="" required> 
                 </div>
                 <div class="field">
                   <label>Cover Image</label>
-                    <input type="file" name="project_pic" id="">
+                    <input type="file" name="project_pic" id="" required>
                 </div>
 
               </div>
-              <button type="submit" class="ui submit button">Add to Profile</button>
+              <button type="submit" class="ui black button">Add to Profile</button>
             </form>
               
           </div>
@@ -164,10 +164,10 @@
                 <!---->
                 <div class="ui form">
                   <div class="field">
-                      {% render_field editForm.bio %}                    
+                      {% render_field editForm.bio _required='true'%}                    
                   </div>
                 </div>
-                <button type="submit" class="ui submit button">Edit</button>
+                <button type="submit" class="ui black button">Edit</button>
               </form>
                 
             </div>
@@ -180,10 +180,10 @@
                 {%csrf_token%}
                 <div class="ui form">
                   <div class="field">
-                      <input type="file" name="profile_pic" id="">                    
+                      <input type="file" name="profile_pic" id="" required>                    
                   </div>
                 </div>
-                <button type="submit" class="ui submit button">Edit</button>
+                <button type="submit" class="ui black button">Edit</button>
               </form>
                 
             </div>
