@@ -28,6 +28,7 @@ class Project(models.Model):
         MinValueValidator(0),
         MaxValueValidator(10)
     ])
+    link = models.URLField(max_length=200,null=True)
     usability = models.IntegerField(default=0,
     validators=[
         MinValueValidator(0),

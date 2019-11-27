@@ -19,6 +19,7 @@ def register(request):
             email = form.cleaned_data['email']
             first_name = form.cleaned_data['first_name']            
             last_name = form.cleaned_data['last_name']
+            
 
             user = User.objects.create_user(username,email,password)
             user.first_name = first_name
@@ -73,6 +74,7 @@ def user_profile(request,username):
     form = ProjectForm()
     projects = Project.get_user_projects(profile)
     overall_rating = Project.get_overall_average(projects)
+    
 
 
     return render(request,'profile.html',{"profile":profile,"form":form,
@@ -96,8 +98,9 @@ def handle_project_upload(request):
     if request.method == "POST":
         name = request.POST['name']
         description = request.POST['description']
+        link = request.POST['link']
         pic = request.FILES['project_pic']
-        project = Project(name=name,description=description,project_pic=pic,profile=profile)
+        project = Project(name=name,description=description,project_pic=pic,profile=profile,link=link)
         project.save()
         
 

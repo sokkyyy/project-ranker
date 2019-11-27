@@ -1,7 +1,7 @@
 {%extends 'base.html' %}
 {%load semanticui %}
 {%block content%}
-<div class="ui internally celled grid" style="margin-top: 60px;">
+<div class="ui internally celled grid" style="margin-top: 90px;">
         <div class="row">
           <div class="four wide column" style="position: relative;">
             <div style="position: absolute;">
@@ -42,7 +42,7 @@
                   <div class="middle aligned content">
                     <div class="header">Contacts</div>
                     <div class="meta">
-                        <span>Add contacts</span>
+                        <span>{{profile.user.email}}</span>
                     </div>
                     
                   </div>
@@ -138,6 +138,10 @@
                 <div class="field">
                   <label>Description</label>
                   <textarea type="text" name="description" id=""></textarea>
+                </div>
+                <div class="field">
+                    <label>Live Link</label>
+                      <input type="text" name="link" id="">
                 </div>
                 <div class="field">
                   <label>Cover Image</label>

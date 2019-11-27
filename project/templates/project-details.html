@@ -21,6 +21,9 @@
               <div class="content">
                 <a class="header">Ratings</a>
                 <div class="meta">
+                  {% if project.average == 0%}
+                  <p>This project has not been rated yet. Be the first to rate it.</p>
+                  {%endif%}
                      <p><span>Design: </span><div name='design' class="ui rating disabled" data-rating="{{project.design|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;"></div></p>
                     <p><span>Usability: </span><div name='usability' class="ui rating disabled" data-rating="{{project.usability|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;"></div></p>
                     <p><span>Content: </span><div name='content' class="ui rating disabled" data-rating="{{project.content|floatformat:'0'}}" data-max-rating="10" style="font-size: 20px;" ></div></p>
@@ -37,7 +40,7 @@
           </div>
           {%else%}
           <div>
-              <p>You have Voted on this project.</p>
+              <p>You have Rated this project.</p>
           </div>
           {%endif%}
         </div>
@@ -86,7 +89,7 @@
         <div class="ui items" >
             <div class="item" style="padding-bottom: 10px;">
               <div class="content">
-                <a class="header" style="font-size: 22px;">Name</a>
+                <div class="header" style="font-size: 22px;">Name</div>
                 <div class="meta" style="font-size: 19px;">
                   <span>{{project.name}}</span>
                 </div>
@@ -98,7 +101,7 @@
 
             <div class="item" style="padding-bottom: 10px;">
               <div class="content">
-                <a class="header" style="font-size: 22px;">Description</a>
+                <div class="header" style="font-size: 22px;">Description</div>
                 <div class="meta" style="font-size: 19px;">
                   <span>{{project.description}}</span>
                 </div>
@@ -106,9 +109,9 @@
             </div>
             <div class="item" style="padding-bottom: 10px;">
                 <div class="content">
-                  <a class="header" style="font-size: 22px;">Live Link</a>
+                  <div class="header" style="font-size: 22px;">Live Link</div>
                   <div class="meta" style="font-size: 19px;">
-                    <span>{{project.link}}</span>
+                    <a href="{{project.link}}" target="_blank">{{project.link}}</a>
                   </div>
                 </div>
             </div>            

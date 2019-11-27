@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['name','description','project_pic']
+        fields = ['name','description','project_pic','link']
 
 class EditProfile(ModelForm):
     class Meta:
