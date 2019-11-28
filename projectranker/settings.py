@@ -126,6 +126,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+GULP_VERSION = '3.9.1'
+SEMANTIC_UI_VERSION = '^2.4.2'
+SEMANTIC_DIRNAME = 'semantic'
+DSU_JQUERY_URL = 'https://code.jquery.com/jquery-3.1.1.min.js'
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
