@@ -1,4 +1,4 @@
-<div class="ui inverted fixed  menu">
+<div class="ui inverted fixed  menu" style="height: 50px;">
   
     <a href="{%url 'home'%}" class="active item">
       Home
@@ -6,20 +6,21 @@
     
     <div class="right menu">
         
-      <div class="item">
-        <form action="{%url 'search_project' %}">
-          <div class="ui icon input">
-            <input name="search" type="text" placeholder="Search Projects">
-            <i class="search link icon" ></i>
-          </div>
-        </form>
-      </div>
+
       {%if not user.is_authenticated %}
       <a href="{%url 'login'%}" class="ui item">
         Sign-in
       </a>
 
     {%else%}
+    <div class="item">
+      <form action="{%url 'search_project' %}">
+        <div class="ui icon input">
+          <input name="search" type="text" placeholder="Search Projects">
+          <i class="search link icon" ></i>
+        </div>
+      </form>
+    </div>
     <div class="ui item dropdown">
         <div class="text" style="color: white;">Account</div>
         <i class="dropdown icon"></i>
