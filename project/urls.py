@@ -15,8 +15,8 @@ urlpatterns = [
     re_path(r'^ajax/ratings/(\d+)/$',views.ratings,name='ratings'),
     path('profile/update/pic/', views.handle_profile_pic, name='upload_pic'),
     path('search/', views.search_projects,name='search_project'),
-    re_path('^api/profiles/$', views.ProfileList.as_view()), 
-    re_path('^api/projects/$', views.ProjectList.as_view()),
+    re_path('^api/profiles/$', views.ProfileList.as_view(), name='api_profiles'), 
+    re_path('^api/projects/$', views.ProjectList.as_view(), name='api_projects'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
