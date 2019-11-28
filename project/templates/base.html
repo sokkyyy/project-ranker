@@ -10,9 +10,11 @@
     {%include 'navbar.html'%}
     {%block content%} {%endblock%}
     <!-- Your HTML code -->
-    <footer style="position: fixed; bottom: 0; width: 100%;">
+    {%block footer%}
+    <footer>
         {%include 'footer.html' %}
     </footer>
+    {%endblock%}
     {% block scripts %}
     {% dsu_jquery_url %}
     {% dsu_javascript_url %}
