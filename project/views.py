@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Profile,Project,Voted
 from django.contrib.auth import authenticate,login,logout
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -57,6 +58,7 @@ def handle_logout(request):
     logout(request)
     return redirect(handle_login)
 
+@login_required(login_url='/login') 
 def user_profile(request,username):
     user = User.objects.get(username=username)
     profile = Profile.get_user_profile(user)
@@ -81,6 +83,7 @@ def user_profile(request,username):
     "projects":projects,"overall_rating":overall_rating,
     "editForm":editForm,})
 
+@login_required(login_url='/login') 
 def handle_profile_pic(request):
     profile = Profile.get_user_profile(request.user)
     if request.method == 'POST':
@@ -89,6 +92,8 @@ def handle_profile_pic(request):
         profile.save()
     return redirect(user_profile,request.user.username)
 
+
+@login_required(login_url='/login') 
 def handle_project_upload(request):
     profile = Profile.get_user_profile(request.user)
 
@@ -106,6 +111,7 @@ def handle_project_upload(request):
 
     return redirect(user_profile,request.user.username)
 
+@login_required(login_url='/login') 
 def project_details(request,project_id):
     project = Project.objects.get(pk=project_id)
     has_user_voted = Voted.has_user_voted(project,request.user)
@@ -113,6 +119,7 @@ def project_details(request,project_id):
     return render(request,'project-details.html',
     {"project":project,"has_user_voted":has_user_voted})
 
+@login_required(login_url='/login') 
 def ratings(request,project_id):
     project = Project.objects.get(pk=project_id)
     voted = Voted(user=request.user,project=project)
@@ -142,7 +149,7 @@ def ratings(request,project_id):
     
     return JsonResponse(data)
 
-
+@login_required(login_url='/login') 
 def search_projects(request):
     search_term = request.GET['search']
     projects = Project.search_projects(search_term)
