@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/sokkyyy/project-ranker#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^4.0.2"
   },
   "dependencies": {
-    "semantic-ui": "^2.4.2"
+    "semantic-ui": "^2.5.0"
   }
 }
